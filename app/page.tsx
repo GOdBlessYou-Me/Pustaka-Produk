@@ -16,8 +16,18 @@ const calculateDiscountedPrice = (originalPrice: number, discountPercent: number
   return Math.floor(originalPrice * (1 - discountPercent / 100))
 }
 
+// Function to shuffle array using Fisher-Yates algorithm
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
 // Dummy product data dengan produk viral Indonesia
-const products = [
+const baseProducts = [
   {
     id: 1,
     name: "Air Fryer Mini 2L - Penggorengan Tanpa Minyak",
@@ -82,14 +92,19 @@ const products = [
     platform: "Tokopedia",
     link: "#tokopedia-affiliate-link",
   },
-].map((product) => {
-  const discount = generateRandomDiscount()
-  return {
-    ...product,
-    discount,
-    discountPrice: calculateDiscountedPrice(product.originalPrice, discount),
-  }
-})
+]
+
+// Apply random discount and shuffle the products
+const products = shuffleArray(
+  baseProducts.map((product) => {
+    const discount = generateRandomDiscount()
+    return {
+      ...product,
+      discount,
+      discountPrice: calculateDiscountedPrice(product.originalPrice, discount),
+    }
+  }),
+)
 
 const SpinWheel = () => {
   const [isSpinning, setIsSpinning] = useState(false)
