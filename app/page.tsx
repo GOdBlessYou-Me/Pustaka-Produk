@@ -30,67 +30,60 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 const baseProducts = [
   {
     id: 1,
-    name: "Air Fryer Mini 2L - Penggorengan Tanpa Minyak",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 299000,
+    name: "Boardshort Cargo Pendek | Celana Pendek Pria Casual Pantai Surfing",
+    image: "/images/1_produk.webp",
     platform: "Shopee",
-    link: "#shopee-affiliate-link",
+    link: "https://s.shopee.co.id/4L8qaVdkwB",
   },
   {
     id: 2,
-    name: "Casing HP Anti Crack Premium + Ring Holder",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 89000,
-    platform: "Tokopedia",
-    link: "#tokopedia-affiliate-link",
+    name: "SPEEDS Meja Kurs Lipat Set Free Meja Lipat Kursi Lipat Outdoor Indoor Tas Folding Table Chair Portable Meja Camping Piknik",
+    image: "/images/2_produk.webp",
+    platform: "Shopee",
+    link: "https://s.shopee.co.id/8zug9ZUDkB",
   },
   {
     id: 3,
-    name: "Kipas Angin Mini USB Portable + Power Bank",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 125000,
-    platform: "TikTok Shop",
-    link: "#tiktok-affiliate-link",
+    name: "Disai - Kaos Polo Shirt Pria Kaos Polos Kerah Pria Lengan Pendek Penyambungan Dan Kontras Formal Casual Polo",
+    image: "/images/3_produk.webp",
+    platform: "Shopee",
+    link: "https://s.shopee.co.id/9pTn9AikYp",
   },
   {
     id: 4,
-    name: "Lampu Tidur LED Galaxy Projector",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 189000,
+    name: "AKULA Jas Hujan Raincoat Pria Wanita Dewasa Terbaik Bahan PVC By AKULA Anti Rembes",
+    image: "/images/4_produk.webp",
     platform: "Shopee",
-    link: "#shopee-affiliate-link",
+    link: "https://s.shopee.co.id/5VKnzLKtvD",
   },
   {
     id: 5,
-    name: "Blender Portable Rechargeable 380ml",
-    image: "/placeholder.svg?height=200&width=200",
+    name: "SHOULDER BAG bisa juga SLING BAG bahan kanvas pria/wanita by ERTIGA original",
+    image: "/images/5_produk.webp",
     originalPrice: 159000,
-    platform: "Tokopedia",
-    link: "#tokopedia-affiliate-link",
+    platform: "Shopee",
+    link: "https://s.shopee.co.id/9pTn9P1hoI",
   },
   {
     id: 6,
-    name: "Organizer Makeup Acrylic 360° Rotating",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 149000,
-    platform: "TikTok Shop",
-    link: "#tiktok-affiliate-link",
+    name: "kaos kaki pria dewasa pendek motif kaos kaki kerja kantoran murah GRATIS Ongkir",
+    image: "/images/6_produk.webp",
+    platform: "Shopee",
+    link: "https://s.shopee.co.id/LchqAbvE7",
   },
   {
     id: 7,
-    name: "Earbuds TWS Bluetooth 5.0 + Charging Case",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 199000,
+    name: "[ PAKET 10 TISSUE ] FACIAL TISSUE NANO 2ply 180 sheets LEMBUT HALUS",
+    image: "/images/7_produk.webp",
     platform: "Shopee",
-    link: "#shopee-affiliate-link",
+    link: "https://s.shopee.co.id/2B4M1e2Gaw",
   },
   {
     id: 8,
-    name: "Tempat Bumbu Dapur Magnetic 12 Pcs",
-    image: "/placeholder.svg?height=200&width=200",
-    originalPrice: 179000,
-    platform: "Tokopedia",
-    link: "#tokopedia-affiliate-link",
+    name: "100% Original Crocs Unisex Classic Clog Original Sandals GRATIS Ongkir",
+    image: "/images/8_produk.webp",
+    platform: "Shopee",
+    link: "https://s.shopee.co.id/4ApQPRi4W0",
   },
 ]
 
@@ -101,7 +94,7 @@ const products = shuffleArray(
     return {
       ...product,
       discount,
-      discountPrice: calculateDiscountedPrice(product.originalPrice, discount),
+     
     }
   }),
 )
@@ -193,8 +186,8 @@ const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
   }
 
   return (
-    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-md">
-      <CardContent className="p-0">
+    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-md h-full">
+      <CardContent className="p-0 h-full flex flex-col">
         <div className="relative overflow-hidden rounded-t-lg">
           <img
             src={product.image || "/placeholder.svg"}
@@ -207,23 +200,13 @@ const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
           <Badge className="absolute top-2 right-2 bg-red-500 text-white font-bold">-{product.discount}%</Badge>
         </div>
 
-        <div className="p-4 space-y-3">
-          <h3 className="font-semibold text-sm text-gray-800 line-clamp-2 leading-tight">{product.name}</h3>
+        <div className="p-4 flex flex-col flex-grow">
+          <h3 className="font-semibold text-sm text-gray-800 line-clamp-2 leading-tight mb-3">{product.name}</h3>
 
-          <div className="space-y-1">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg font-bold text-red-600">{formatPrice(product.discountPrice)}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-500 line-through">{formatPrice(product.originalPrice)}</span>
-              <span className="text-xs text-green-600 font-medium">
-                Hemat {formatPrice(product.originalPrice - product.discountPrice)}
-              </span>
-            </div>
-          </div>
+        
 
           <Button
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 rounded-lg transition-all duration-200"
+            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 rounded-lg transition-all duration-200 mt-3"
             onClick={() => window.open(product.link, "_blank")}
           >
             Cek Sekarang 🔥
